@@ -3,25 +3,28 @@ package br.com.rchlo.service;
 import br.com.rchlo.domain.Product;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductsByEffectivePriceRange {
 
-    public List<Product> m(BigDecimal mi, BigDecimal ma, List<Product> lis) {
-        if (mi == null) throw new IllegalArgumentException("minimum price should not be null");
-        if (ma == null) throw new IllegalArgumentException("maximum price should not be null");
-        if (lis == null) throw new IllegalArgumentException("product list should not be null");
+    public List<Product> filter(BigDecimal minimumPrice, BigDecimal maximumPrice, List<Product> products) {
 
-        List<Product> lisFi = new ArrayList<>();
+        validateParameters(minimumPrice, maximumPrice, products);
 
-        for (Product x : lis) {
-            if ((x.getDiscount() != null ? x.getPrice().subtract(x.getDiscount()) : x.getPrice()).compareTo(mi) >= 0 && (x.getDiscount() != null ? x.getPrice().subtract(x.getDiscount()) : x.getPrice()).compareTo(ma) <= 0) {
-                lisFi.add(x);
-            }
-        }
+        return products.stream()
+                .filter(product -> compareValueFilter(minimumPrice, maximumPrice, product.getPriceClosing()))
+                .collect(Collectors.toList());
+    }
 
-        return lisFi;
+    private Boolean compareValueFilter(BigDecimal minimum, BigDecimal maximum, BigDecimal compared) {
+        return minimum.compareTo(compared) <= 0 && maximum.compareTo(compared) >= 0;
+    }
+
+    private void validateParameters(BigDecimal minimumPrice, BigDecimal maximumPrice, List<Product> products) {
+        if (minimumPrice == null) throw new IllegalArgumentException("minimum price should not be null");
+        if (maximumPrice == null) throw new IllegalArgumentException("maximum price should not be null");
+        if (products == null) throw new IllegalArgumentException("product list should not be null");
     }
 
 }

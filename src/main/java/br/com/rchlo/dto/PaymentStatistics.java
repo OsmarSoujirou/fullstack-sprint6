@@ -10,6 +10,7 @@ import java.util.function.BiFunction;
 public class PaymentStatistics extends HashMap<PaymentStatus, Long> {
 
     private BigDecimal maximumAmountOfConfirmedPayment;
+    private Map<PaymentStatus, Long> paymentsByStatus;
 
     public PaymentStatistics(BigDecimal maximumAmountOfConfirmedPayment) {
         this.maximumAmountOfConfirmedPayment = maximumAmountOfConfirmedPayment;

@@ -12,24 +12,18 @@ public class ProductsByEffectivePriceRangeMain {
 
     public static void main(String[] args) {
 
-        var productsByEffectivePriceRangeFilter = new ProductsByEffectivePriceRange();
+        var productsByEffectivePriceRange = new ProductsByEffectivePriceRange();
         List<Product> allProducts = ProductRepository.all();
         BigDecimal minimumPrice = new BigDecimal("30.00");
         BigDecimal maximumPrice = new BigDecimal("50.00");
 
-        List<Product> filteredProducts = productsByEffectivePriceRangeFilter.m(minimumPrice, maximumPrice, allProducts);
+        List<Product> filteredProducts = productsByEffectivePriceRange.filter(minimumPrice, maximumPrice, allProducts);
 
-        for (Product product : filteredProducts) {
-            boolean hasDiscount = product.getDiscount() != null;
-            BigDecimal effectivePrice;
-            if (hasDiscount) {
-                effectivePrice = product.getPrice().subtract(product.getDiscount());
-            } else {
-                effectivePrice = product.getPrice();
-            }
-            System.out.printf("%s - %s - R$ %.2f %n", product.getCode(), product.getName(), effectivePrice);
-        }
+        filteredProducts.forEach(product -> {
+            System.out.printf("%s - %s - R$ %.2f %n", product.getCode(), product.getName(), product.getPriceClosing());
+        });
 
     }
-
 }
+
+

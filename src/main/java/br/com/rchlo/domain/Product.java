@@ -60,6 +60,15 @@ public class Product {
         return discount;
     }
 
+    public BigDecimal getPriceClosing() {
+
+        boolean hasDiscount = discount != null;
+
+        if (! hasDiscount) return price;
+
+        return price.subtract(discount);
+    }
+
     public Color getColor() {
         return color;
     }

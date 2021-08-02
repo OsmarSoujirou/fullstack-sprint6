@@ -2,7 +2,7 @@ package br.com.rchlo.domain;
 
 import java.math.BigDecimal;
 
-public class Payment {
+public class Payment  {
 
     private Long id;
     private BigDecimal amount;
