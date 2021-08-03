@@ -13,16 +13,7 @@ public class ProductsByCode {
                 .stream()
                 .filter(product -> product.getCode().equals(code))
                 .collect(Collectors.toList());
-
-       /**List<Product> filteredProducts = new ArrayList<>();
-
-        products.forEach(product -> {
-            // (code.hashCode() == product.hashCode())
-            if (product.getCode().equals(code)) filteredProducts.add(product);
-        });
-
-         return filteredProducts;
-        **/
+        
     }
 
     private void validateParameters(Long code, List<Product> products) {

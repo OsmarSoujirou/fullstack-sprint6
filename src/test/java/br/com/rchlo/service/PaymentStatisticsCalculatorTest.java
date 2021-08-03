@@ -25,7 +25,8 @@ class PaymentStatisticsCalculatorTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        Mockito.when(paymentRepository.all()).thenReturn(PaymentsMock.all());
+        Mockito.when(paymentRepository.totalByStatus()).thenReturn(PaymentsMock.totalByStatus());
+        Mockito.when(paymentRepository.maxByStatus(PaymentStatus.CONFIRMED)).thenReturn(PaymentsMock.maxByStatus(PaymentStatus.CONFIRMED));
         paymentStatisticsCalculator = new PaymentStatisticsCalculator(paymentRepository);
     }
     @AfterEach
@@ -44,8 +45,7 @@ class PaymentStatisticsCalculatorTest {
     void deveConsiderarQuantidadeDePagamentoPorStatus() {
         paymentStatistics = paymentStatisticsCalculator.calculate();
         Map<PaymentStatus, Long> quantityOfPaymentsByStatus = paymentStatistics.getQuantityOfPaymentsByStatus();
-        Assertions.assertThat(quantityOfPaymentsByStatus)
-                .containsEntry(PaymentStatus.CONFIRMED, 2L);
+        Assertions.assertThat(quantityOfPaymentsByStatus).containsEntry(PaymentStatus.CONFIRMED, 2L);
     }
 
 }

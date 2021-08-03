@@ -12,22 +12,22 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProductsSizesReportTest {
-    private ProductSizesReport productsSizesReport;
+ class ProductsSizesReportTest {
+     private ProductSizesReport productsSizesReport;
 
-    @BeforeEach
-    void setUp() {
-        productsSizesReport = new ProductSizesReport();
-    }
+     @BeforeEach
+     void setUp() {
+         productsSizesReport = new ProductSizesReport();
+     }
 
-    @Test
-    void expectReturnWithQuantityAsMock() {
-        List<Product> products = List.of(mockP1(), mockP2());
+     @Test
+     void shouldReturnWithQuantityAsMock() {
+         List<Product> products = List.of(productM1(), productM2());
         assertEquals(2, productsSizesReport.report(products).get(Size.SMALL));
     }
 
     @Test
-    void expectReturnWithEmptyList() {
+    void shouldReturnWithEmptyList() {
 
         List<Product> products = List.of();
         for (Size size : Size.values()) {
@@ -36,7 +36,7 @@ public class ProductsSizesReportTest {
 
     }
 
-    private Product mockP1() {
+    private Product productM1() {
         return new Product(14124998L,
                 "Camiseta",
                 "Camiseta Infantil...",
@@ -50,7 +50,7 @@ public class ProductsSizesReportTest {
                 Set.of(Size.SMALL));
     }
 
-    private Product mockP2() {
+    private Product productM2() {
         return new Product(13834193L,
                 "Jaqueta",
                 "Jaqueta Puffer...",

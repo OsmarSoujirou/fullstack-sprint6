@@ -65,11 +65,11 @@ class ProductsByEffectivePriceRangeTest {
         assertEquals(14124998L, product.getCode());
         assertEquals("Camiseta Infantil Manga Curta Super Mario", product.getName());
     }
-    @Test
+
     private Product aDiscountedTShirt() {
         return new Product(14124998L,
                 "Camiseta Infantil Manga Curta Super Mario",
-                "A Camiseta Infantil Manga Curta Super Mario é confeccionada em malha macia e possui decote careca, mangas curtas e padronagem do Super Mario. Aposte na peça na hora de compor visuais geek divertidos.",
+                "A Camiseta Infantil Manga Curta Super...",
                 "camiseta-infantil-manga-curta-super-mario-14124998_sku",
                 "Nintendo",
                 new BigDecimal("39.90"),
@@ -83,7 +83,7 @@ class ProductsByEffectivePriceRangeTest {
     private Product anExpensiveJacket() {
         return new Product(13834193L,
                 "Jaqueta Puffer Juvenil Com Capuz Super Mario",
-                "A Jaqueta Puffer Juvenil Com Capuz Super Mario é confeccionada em material sintético. Possui estrutura ampla e modelo puffer, com capuz em pelúcia e bolsos frontais. Ideal para compor looks de inverno, mas sem perder o estilo. Combine com uma camiseta, calça jeans e tênis colorido.",
+                "A Jaqueta Puffer Juvenil Com Capuz Super...",
                 "jaqueta-puffer-juvenil-com-capuz-super-mario-13834193_sku",
                 "Nintendo",
                 new BigDecimal("199.90"),
@@ -97,7 +97,7 @@ class ProductsByEffectivePriceRangeTest {
     private Product aCheapTankTop() {
         return new Product(14040174L,
                 "Regata Infantil Mario Bros",
-                "A Regata Infantil Mario Bros é confeccionada em fibra natural, possui decote redondo e modelagem regular. As peças temáticas com os personagens preferidos da criançada são indispensáveis no guarda-roupa. Divertidas e cheias de personalidade, os modelos são uma forma dos pequenos se expressarem em relação aos seus gostos pessoais, que já começam desde cedo. Aposte!",
+                "A Regata Infantil Mario Bros é confeccionada...",
                 "regata-infantil-mario-bros-14040174_sku",
                 "Nintendo",
                 new BigDecimal("29.90"),

@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 public class ProductRepository {
-
+    private ProductRepository(){
+        throw new IllegalStateException("Utility class");
+    }
     public static List<Product> all() {
         return List.of(
                 new Product(13834193L,

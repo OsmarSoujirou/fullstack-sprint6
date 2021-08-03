@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 
-public class Product {
+public class Product implements Comparable<Product> {
 
     private final Long code;
     private final String name;
@@ -18,7 +18,8 @@ public class Product {
     private final String image;
     private final Set<Size> availableSizes;
 
-    public Product(Long code, String name, String description, String slug, String brand, BigDecimal price, BigDecimal discount, Color color, Integer weightInGrams, String image, Set<Size> availableSizes) {
+    public Product(Long code, String name, String description, String slug, String brand, BigDecimal price,
+                   BigDecimal discount, Color color, Integer weightInGrams, String image, Set<Size> availableSizes) {
         this.code = code;
         this.name = name;
         this.description = description;
@@ -115,5 +116,10 @@ public class Product {
                 ", image='" + image + '\'' +
                 ", availableSizes=" + availableSizes +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        return Long.compare(this.getCode(), other.getCode());
     }
 }

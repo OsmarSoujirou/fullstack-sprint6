@@ -12,22 +12,22 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProductColorsReportTest {
-    private ProductColorsReport productsColorsReport;
+ class ProductColorsReportTest {
+     private ProductColorsReport productsColorsReport;
 
-    @BeforeEach
-    void setUp() {
-        productsColorsReport = new ProductColorsReport();
-    }
+     @BeforeEach
+     void setUp() {
+         productsColorsReport = new ProductColorsReport();
+     }
 
-    @Test
-    void expectReturnWithQuantityAsMock() {
-        List<Product> products = List.of(mockP1(), mockP2());
+     @Test
+     void shouldReturnWithQuantityAsMock() {
+         List<Product> products = List.of(mockP1(), mockP2());
         assertEquals(2, productsColorsReport.report(products).get(Color.BLUE));
     }
 
     @Test
-    void expectReturnWithEmptyList() {
+    void shouldReturnWithEmptyList() {
 
         List<Product> products = List.of();
         for (Color color : Color.values()) {

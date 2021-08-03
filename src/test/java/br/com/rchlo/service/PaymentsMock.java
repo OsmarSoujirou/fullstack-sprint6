@@ -1,33 +1,34 @@
 package br.com.rchlo.service;
 
-import br.com.rchlo.domain.Card;
 import br.com.rchlo.domain.Payment;
 import br.com.rchlo.domain.PaymentStatus;
 
 import java.math.BigDecimal;
-import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PaymentsMock {
 
     private static List<Payment> allPayments = new ArrayList<>();
 
-    public static List<Payment> all() {
+    public static Map<PaymentStatus, Long> totalByStatus() {
 
-        Card card = new Card("MOCK1", "0000", YearMonth.now(), "666");
+        Map<PaymentStatus, Long> totalByStatus = new LinkedHashMap<>();
 
-        Payment paymentMock1 = new Payment(6L, new BigDecimal("200.00"), card, PaymentStatus.CONFIRMED);
-        Payment paymentMock2 = new Payment(6L, new BigDecimal("50.00"), card, PaymentStatus.CONFIRMED);
+        totalByStatus.put(PaymentStatus.CONFIRMED, 2L);
 
-        allPayments.add(paymentMock1);
-        allPayments.add(paymentMock2);
-
-        return allPayments;
+        return totalByStatus ;
     }
 
     public static void empty() {
         allPayments = new ArrayList<>();
+    }
+
+
+    public static BigDecimal maxByStatus(PaymentStatus status) {
+        return new BigDecimal("200.00");
     }
 
 

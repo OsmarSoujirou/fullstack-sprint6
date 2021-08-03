@@ -4,50 +4,47 @@ import br.com.rchlo.domain.Color;
 import br.com.rchlo.domain.Product;
 import br.com.rchlo.domain.Size;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+class ProductsSortedByCodeTest {
 
- class ProductsByColorTest {
+    private ProductsSortedByCode productsSortedByCode;
 
-     private ProductsByColor productsByColor;
 
-     @BeforeEach
-     void setUp() {
-         productsByColor = new ProductsByColor();
-     }
 
-     @Test
-     void shouldFilterTwoProducts() {
+    @Test
+    void shouldCodeOfTheFirstIndexBeLessThanTheSecond() {
         List<Product> products = List.of(productM1(), productM2());
+        List<Product> productsSorted = new ProductsSortedByCode(products).getProductSortedList();
 
-        List<Product> filteredProducts = productsByColor.filter(Color.BLUE, products);
-        assertEquals(2, filteredProducts.size());
-
+        Long productCode1 = productsSorted.get(0).getCode();
+        Long productCode2 = productsSorted.get(1).getCode();
+        Assert.assertEquals(-1,productCode1.compareTo(productCode2));
     }
+
+
     @Test
-    void shouldReturnsEmptyListEmpty(){
-        List<Product> products = List.of();
-
-        List<Product> filteredProducts = productsByColor.filter(Color.BLUE, products);
-        assertEquals(0, filteredProducts.size());
-
-    }
-    @Test
-    void shouldThrowsExceptionNullColor(){
-        List<Product> products = List.of();
-
+    void shouldThrowsExceptionArgumentIsNull() {
         try {
-            productsByColor.filter(null, products);
+            productsSortedByCode = new ProductsSortedByCode(null);
             Assert.fail("Expected an IllegalArgumentException to be thrown");
-        } catch (IllegalArgumentException e) {  }
+        } catch (IllegalArgumentException e) {
+        }
+    }
 
 
+    @Test
+    void shouldThrowsExceptionArgumentIfListIsEmpty() {
+        List<Product> products = List.of();
+        try {
+            productsSortedByCode = new ProductsSortedByCode(products);
+            Assert.fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+        }
     }
 
     private Product productM1() {
@@ -77,7 +74,4 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 "3107b7473df334c6ff206cd78d16dec86d7dfe9a.jpg",
                 Set.of(Size.LARGE, Size.EXTRA_LARGE));
     }
-
 }
-
-
